@@ -1,0 +1,115 @@
+using System;
+
+namespace InterfaceCalculator
+{
+    interface ICalculator
+    {
+        double Add(double a, double b);
+        double Subtract(double a, double b);
+        double Multiply(double a, double b);
+        double Divide(double a, double b);
+    }
+
+    class Calculator : ICalculator
+    {
+        public double Add(double a, double b) => a + b;
+        public double Subtract(double a, double b) => a - b;
+        public double Multiply(double a, double b) => a * b;
+        public double Divide(double a, double b)
+        {
+            if (b == 0)
+                throw new DivideByZeroException("Cannot divide by zero.");
+            return a / b;
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            ICalculator calc = new Calculator();
+
+            try
+            {
+                Console.Write("Enter first number: ");
+                double x = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Enter operator (+ - * /): ");
+                string op = Console.ReadLine();
+
+                Console.Write("Enter second number: ");
+                double y = Convert.ToDouble(Console.ReadLine());
+
+                double result = op switch
+                {
+                    "+" => calc.Add(x, y),
+                    "-" => calc.Subtract(x, y),
+                    "*" => calc.Multiply(x, y),
+                    "/" => calc.Divide(x, y),
+                    _ => throw new InvalidOperationException("Unknown operator")
+                };
+
+                Console.WriteLine($"Result: {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+}
+[04/07, 9:31 pm] Muhammad Abdullah: using System;
+
+namespace GameCharacters
+{
+    public enum CharacterClass { Warrior, Mage, Archer }
+
+    public class Character
+    {
+        public string Name { get; set; }
+        public CharacterClass Class { get; set; }
+        public int Health { get; protected set; }
+
+        public event Action<string> OnAttack;
+
+        public Character(string name, CharacterClass characterClass)
+        {
+            Name = name;
+            Class = characterClass;
+            Health = 100;
+        }
+
+        public virtual void Attack()
+        {
+            OnAttack?.Invoke($"{Name} attacks with basic attack!");
+        }
+
+        public void TakeDamage(int amount)
+        {
+            Health -= amount;
+            Console.WriteLine($"{Name} took {amount} damage. Remaining health: {Health}");
+        }
+    }
+
+    public class Mage : Character
+    {
+        public Mage(string name) : base(name, CharacterClass.Mage) { }
+
+        public override void Attack()
+        {
+            OnAttack?.Invoke($"{Name} casts a fireball!");
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            Character mage = new Mage("Gandalf");
+            mage.OnAttack += message => Console.WriteLine(message);
+
+            mage.Attack();
+            mage.TakeDamage(30);
+        }
+    }
+}
