@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApp12.VariableBestPractices
+{
+    /// <summary>
+    /// Demonstrates the difference between const and readonly variables in C#.
+    /// </summary>
+    class Program
+    {
+        // Constant variable (value known at compile-time)
+        public const string CSHARP = "Variable Best Practice";
+
+        // Readonly variable (value assigned at runtime, but once only)
+        public static readonly DateTime CreatedAt = DateTime.Now;
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Constant Value: " + CSHARP);
+            Console.WriteLine("Readonly Value (Program created at): " + CreatedAt);
+
+            // You cannot modify CSHARP or CreatedAt here — they are fixed
+        }
+    }
+}
