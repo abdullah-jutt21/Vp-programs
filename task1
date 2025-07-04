@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+namespace task2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+
+
+            // Print a header to explain the program
+            System.Console.WriteLine("Data Type Minimum and Maximum Values\n");
+
+            // Print minimum value of int
+            System.Console.WriteLine("int Min Value: " + int.MinValue);
+            // Print maximum value of int
+            System.Console.WriteLine("int Max Value: " + int.MaxValue + "\n");
+
+            // Print minimum value of double
+            System.Console.WriteLine("double Min Value: " + double.MinValue);
+            // Print maximum value of double
+            System.Console.WriteLine("double Max Value: " + double.MaxValue + "\n");
+
+            // Print minimum value of long
+            System.Console.WriteLine("long Min Value: " + long.MinValue);
+            // Print maximum value of long
+            System.Console.WriteLine("long Max Value: " + long.MaxValue + "\n");
+
+            // Inform that string does not have min or max values
+            System.Console.WriteLine("string Min Value: N/A (strings don't have Min/Max values)");
+            System.Console.WriteLine("string Max Value: N/A (strings are sequences of characters)\n");
+
+            // Wait for the user to press any key before exiting
+            System.Console.WriteLine("Press any key to exit...");
+            System.Console.ReadKey();
+
+
+        }
+    }
+}
