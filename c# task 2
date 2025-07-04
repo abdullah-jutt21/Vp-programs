@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        // Global Variable (Accessible throughout the class)
+        public static int GlobalCounter = 0;
+
+        static void Main(string[] args)
+        {
+            // Local Variable (Accessible only inside Main method)
+            int localCounter = 10;
+
+            Console.WriteLine("Global Counter before increment: " + GlobalCounter);
+            Console.WriteLine("Local Counter: " + localCounter);
+
+            // Call another method
+            NewMethod();
+
+            Console.WriteLine("Global Counter after increment: " + GlobalCounter);
+        }
+
+        // Method to perform operations
+        static void NewMethod()
+        {
+            IncrementGlobalCounter();
+
+            Console.WriteLine("Global Counter inside NewMethod after increment: " + GlobalCounter);
+        }
+
+        // Method to increment the global counter
+        public static void IncrementGlobalCounter()
+        {
+            GlobalCounter++;
+        }
+    }
+}
